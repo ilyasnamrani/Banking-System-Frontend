@@ -1,0 +1,197 @@
+/* ============================================
+   404 NOT FOUND PAGE — Premium Cosmic Dark Theme
+   ============================================ */
+
+.not-found-section {
+  position: relative;
+  min-height: 100vh;
+  background: var(--gradient-hero);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+}
+
+/* Background Effects */
+.bg-effects {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orb-cosmic-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.25), transparent 70%);
+  top: 10%;
+  left: 10%;
+  animation: float 8s ease-in-out infinite;
+}
+
+.orb-cosmic-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.2), transparent 70%);
+  bottom: 10%;
+  right: 10%;
+  animation: float 10s ease-in-out infinite 2s;
+}
+
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+}
+
+/* Content Container */
+.not-found-container {
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Error Code Illustration */
+.error-visual {
+  position: relative;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-code {
+  font-family: var(--font-display);
+  font-size: 9rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  background: var(--gradient-brand);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 4s ease infinite, fadeInUp 0.8s ease-out;
+}
+
+.orb-orbital {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: spin-slow 20s linear infinite;
+}
+
+.error-icon {
+  position: absolute;
+  font-size: 2rem;
+  color: var(--brand-accent-light);
+  background: var(--bg-dark);
+  padding: 6px;
+  border-radius: 50%;
+  box-shadow: var(--shadow-glow-accent);
+  /* Place icon offset on orbit circumference */
+  transform: rotate(0deg) translateX(100px) rotate(0deg);
+  animation: orbit 12s linear infinite;
+}
+
+/* Error Message Content */
+.error-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.error-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.error-message {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 440px;
+}
+
+/* Home Button Glow */
+.btn-home-glow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  border-radius: var(--radius-full);
+  background: var(--gradient-brand);
+  color: #fff;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+}
+
+.btn-home-glow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(6, 182, 212, 0.45);
+}
+
+.btn-home-glow i {
+  font-size: 1.1rem;
+  transition: transform var(--transition-fast);
+}
+
+.btn-home-glow:hover i {
+  transform: scale(1.1);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .error-code {
+    font-size: 6.5rem;
+  }
+
+  .orb-orbital {
+    width: 150px;
+    height: 150px;
+  }
+
+  .error-icon {
+    font-size: 1.6rem;
+    transform: rotate(0deg) translateX(75px) rotate(0deg);
+  }
+
+  .error-title {
+    font-size: 1.6rem;
+  }
+
+  .error-message {
+    font-size: 0.92rem;
+  }
+
+  .btn-home-glow {
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,151 @@
+<app-user-navbar></app-user-navbar>
+
+<main class="profile-page-main">
+  <div class="profile-container animate-fade-in">
+    <div class="profile-card">
+      <!-- Header -->
+      <div class="profile-header">
+        <div class="header-icon-badge">
+          <i class="bi bi-person-gear"></i>
+        </div>
+        <h1 class="profile-title">Profile Settings</h1>
+        <p class="profile-subtitle">Keep your contact information and banking credentials updated</p>
+      </div>
+
+      <!-- Error / Success Banners -->
+      @if (successMessage) {
+        <div class="banner success-banner animate-fade-in">
+          <i class="bi bi-check-circle-fill"></i>
+          <span>{{ successMessage }}</span>
+        </div>
+      }
+      @if (errorMessage) {
+        <div class="banner error-banner animate-fade-in">
+          <i class="bi bi-exclamation-triangle-fill"></i>
+          <span>{{ errorMessage }}</span>
+        </div>
+      }
+
+      <!-- Loading State -->
+      @if (isLoading) {
+        <div class="profile-skeleton">
+          <div class="skeleton-field"></div>
+          <div class="skeleton-field"></div>
+          <div class="skeleton-field full-width"></div>
+          <div class="skeleton-field full-width"></div>
+          <div class="skeleton-button"></div>
+        </div>
+      } @else {
+        <!-- Edit Profile Form -->
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="profile-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="firstName" class="field-label">
+                <i class="bi bi-person"></i>
+                First Name
+              </label>
+              <input
+                type="text"
+                class="field-input"
+                id="firstName"
+                formControlName="firstName"
+                placeholder="Enter first name"
+                [class.is-invalid]="profileForm.get('firstName')?.invalid && profileForm.get('firstName')?.touched"
+              >
+            </div>
+            <div class="form-field">
+              <label for="lastName" class="field-label">
+                <i class="bi bi-person"></i>
+                Last Name
+              </label>
+              <input
+                type="text"
+                class="field-input"
+                id="lastName"
+                formControlName="lastName"
+                placeholder="Enter last name"
+                [class.is-invalid]="profileForm.get('lastName')?.invalid && profileForm.get('lastName')?.touched"
+              >
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="cin" class="field-label">
+                <i class="bi bi-card-text"></i>
+                CIN
+              </label>
+              <input
+                type="text"
+                class="field-input"
+                id="cin"
+                formControlName="cin"
+                placeholder="Enter CIN"
+                [class.is-invalid]="profileForm.get('cin')?.invalid && profileForm.get('cin')?.touched"
+              >
+            </div>
+            <div class="form-field">
+              <label for="phoneNumber" class="field-label">
+                <i class="bi bi-telephone"></i>
+                Phone Number
+              </label>
+              <input
+                type="text"
+                class="field-input"
+                id="phoneNumber"
+                formControlName="phoneNumber"
+                placeholder="Enter phone number"
+                [class.is-invalid]="profileForm.get('phoneNumber')?.invalid && profileForm.get('phoneNumber')?.touched"
+              >
+            </div>
+          </div>
+
+          <div class="form-field full-width">
+            <label for="email" class="field-label">
+              <i class="bi bi-envelope"></i>
+              Email Address
+            </label>
+            <input
+              type="email"
+              class="field-input"
+              id="email"
+              formControlName="email"
+              placeholder="Enter email address"
+              [class.is-invalid]="profileForm.get('email')?.invalid && profileForm.get('email')?.touched"
+            >
+          </div>
+
+          <div class="form-field full-width">
+            <label for="password" class="field-label">
+              <i class="bi bi-lock"></i>
+              Password
+            </label>
+            <input
+              type="password"
+              class="field-input"
+              id="password"
+              formControlName="password"
+              placeholder="Enter secure password"
+              [class.is-invalid]="profileForm.get('password')?.invalid && profileForm.get('password')?.touched"
+            >
+          </div>
+
+          <div class="profile-actions">
+            <button type="button" routerLink="/userDashboard" class="btn-cancel">
+              <span>Cancel</span>
+            </button>
+            <button type="submit" class="btn-save" [disabled]="isSubmitting">
+              @if (isSubmitting) {
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                <span>Saving Changes...</span>
+              } @else {
+                <span>Save Changes</span>
+                <i class="bi bi-check-lg"></i>
+              }
+            </button>
+          </div>
+        </form>
+      }
+    </div>
+  </div>
+</main>

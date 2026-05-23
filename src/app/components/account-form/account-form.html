@@ -1,0 +1,80 @@
+<app-user-navbar></app-user-navbar>
+
+<main class="form-page-main">
+  <div class="form-container-card animate-fade-in">
+    <div class="form-header">
+      <div class="header-icon-glow">
+        <i class="bi bi-wallet2"></i>
+      </div>
+      <h1 class="form-title">Open Bank Account</h1>
+      <p class="form-subtitle">Choose your account type to start managing your transactions</p>
+    </div>
+
+    <form [formGroup]="accountForm" (ngSubmit)="onSubmit()" class="premium-form">
+      <div class="form-group">
+        <label for="accountType" class="form-label">
+          <i class="bi bi-check-square"></i>
+          Select Account Type
+        </label>
+
+        <div class="custom-select-wrapper">
+          <select
+            id="accountType"
+            formControlName="accountType"
+            class="form-select-premium"
+            [class.is-invalid]="accountForm.get('accountType')?.invalid && accountForm.get('accountType')?.touched"
+          >
+            <option value="" disabled selected>Choose Savings or Checking...</option>
+            <option value="SAVINGS">Savings Account (Epargne)</option>
+            <option value="CHECKING">Checking Account (Courant)</option>
+          </select>
+          <div class="select-arrow-indicator">
+            <i class="bi bi-chevron-down"></i>
+          </div>
+        </div>
+
+        @if (accountForm.get('accountType')?.invalid && accountForm.get('accountType')?.touched) {
+          <div class="error-feedback animate-fade-in">
+            <i class="bi bi-exclamation-circle"></i>
+            Please select a valid account type to proceed.
+          </div>
+        }
+      </div>
+
+      <div class="form-notice-panel">
+        <div class="notice-icon">
+          <i class="bi bi-info-circle"></i>
+        </div>
+        <div class="notice-content">
+          <h4>Account Terms Summary</h4>
+          <p>Savings accounts have competitive interest rates. Checking accounts allow seamless daily transaction limits.</p>
+        </div>
+      </div>
+
+      <div class="form-actions-row">
+        <button
+          type="button"
+          routerLink="/accounts"
+          class="btn-back-link"
+        >
+          <i class="bi bi-arrow-left"></i>
+          <span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          class="btn-submit-premium"
+          [disabled]="isSubmitting"
+        >
+          @if (isSubmitting) {
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <span>Creating...</span>
+          } @else {
+            <span>Create Account</span>
+            <i class="bi bi-arrow-right"></i>
+          }
+        </button>
+      </div>
+    </form>
+  </div>
+</main>

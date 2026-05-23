@@ -1,0 +1,138 @@
+<section class="register-page" id="register-page">
+  <!-- Background effects -->
+  <div class="bg-effects" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <!-- Back navigation -->
+  <nav class="register-nav">
+    <a routerLink="/" class="back-link">
+      <i class="bi bi-arrow-left"></i>
+      <span>Back to Home</span>
+    </a>
+    <div class="nav-brand">
+      <div class="brand-icon">
+        <i class="bi bi-bank2"></i>
+      </div>
+      <span class="brand-text">NexBank</span>
+    </div>
+  </nav>
+
+  <!-- Register Card -->
+  <div class="register-container">
+    <div class="register-card">
+      <div class="card-header">
+        <div class="header-icon">
+          <i class="bi bi-person-plus-fill"></i>
+        </div>
+        <h1 class="card-title">Create Account</h1>
+        <p class="card-subtitle">Join NexBank and start managing your finances</p>
+      </div>
+
+      <form [formGroup]="formData" (ngSubmit)="onSubmit()" class="register-form">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="firstName" class="field-label">
+              <i class="bi bi-person"></i>
+              First Name
+            </label>
+            <input
+              type="text"
+              class="field-input"
+              id="firstName"
+              formControlName="firstName"
+              placeholder="Enter first name"
+              autocomplete="given-name"
+            >
+          </div>
+          <div class="form-field">
+            <label for="lastName" class="field-label">
+              <i class="bi bi-person"></i>
+              Last Name
+            </label>
+            <input
+              type="text"
+              class="field-input"
+              id="lastName"
+              formControlName="lastName"
+              placeholder="Enter last name"
+              autocomplete="family-name"
+            >
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="cin" class="field-label">
+              <i class="bi bi-card-text"></i>
+              CIN
+            </label>
+            <input
+              type="text"
+              class="field-input"
+              id="cin"
+              formControlName="cin"
+              placeholder="Enter CIN"
+            >
+          </div>
+          <div class="form-field">
+            <label for="phoneNumber" class="field-label">
+              <i class="bi bi-telephone"></i>
+              Phone Number
+            </label>
+            <input
+              type="text"
+              class="field-input"
+              id="phoneNumber"
+              formControlName="phoneNumber"
+              placeholder="Enter phone number"
+              autocomplete="tel"
+            >
+          </div>
+        </div>
+
+        <div class="form-field full-width">
+          <label for="email" class="field-label">
+            <i class="bi bi-envelope"></i>
+            Email Address
+          </label>
+          <input
+            type="email"
+            class="field-input"
+            id="email"
+            formControlName="email"
+            placeholder="Enter email address"
+            autocomplete="email"
+          >
+        </div>
+
+        <div class="form-field full-width">
+          <label for="password" class="field-label">
+            <i class="bi bi-lock"></i>
+            Password
+          </label>
+          <input
+            type="password"
+            class="field-input"
+            id="password"
+            formControlName="password"
+            placeholder="Create a secure password"
+            autocomplete="new-password"
+          >
+        </div>
+
+        <button type="submit" class="btn-submit" id="register-submit">
+          <span>Create Account</span>
+          <i class="bi bi-arrow-right"></i>
+        </button>
+      </form>
+
+      <div class="card-footer">
+        <span class="footer-text">Already have an account?</span>
+        <a routerLink="/" class="footer-link">Sign In</a>
+      </div>
+    </div>
+  </div>
+</section>

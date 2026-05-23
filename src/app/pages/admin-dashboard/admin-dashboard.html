@@ -1,0 +1,130 @@
+<!-- Premium Admin Top Navbar -->
+<header class="admin-header">
+  <div class="admin-header-container">
+    <div class="brand-side">
+      <div class="admin-logo">
+        <i class="bi bi-shield-lock-fill"></i>
+      </div>
+      <div class="brand-titles">
+        <span class="admin-brand-name">NexBank</span>
+        <span class="admin-portal-badge text-glow">Admin Operations</span>
+      </div>
+    </div>
+    <button class="btn-admin-logout" (click)="logout()">
+      <span>Sign Out Portal</span>
+      <i class="bi bi-box-arrow-right"></i>
+    </button>
+  </div>
+</header>
+
+<main class="admin-dashboard-main animate-fade-in">
+  <div class="admin-container">
+    
+    <!-- Title Section -->
+    <div class="admin-welcome-row">
+      <div class="titles">
+        <h1 class="admin-page-title">System Users Directory</h1>
+        <p class="admin-page-subtitle">Review registered bank clients, check CIN identity documents, and handle access control</p>
+      </div>
+      <button (click)="loadAllUsers()" class="btn-refresh-admin">
+        <i class="bi bi-arrow-clockwise"></i>
+        <span>Refresh Users</span>
+      </button>
+    </div>
+
+    <!-- System Stats Panel -->
+    <div class="admin-stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon-wrapper blue">
+          <i class="bi bi-people-fill"></i>
+        </div>
+        <div class="stat-info">
+          <span class="stat-label">Total Core Clients</span>
+          <h2 class="stat-number">{{ users.length }}</h2>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon-wrapper green">
+          <i class="bi bi-shield-check"></i>
+        </div>
+        <div class="stat-info">
+          <span class="stat-label">Identity Verification</span>
+          <h2 class="stat-number text-glow">100%</h2>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon-wrapper cyan">
+          <i class="bi bi-activity"></i>
+        </div>
+        <div class="stat-info">
+          <span class="stat-label">Core Database Sync</span>
+          <h2 class="stat-number">Active</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error Banner -->
+    @if (errorMessage) {
+      <div class="admin-error-banner animate-fade-in">
+        <i class="bi bi-exclamation-octagon-fill"></i>
+        <span>{{ errorMessage }}</span>
+      </div>
+    }
+
+    <!-- Table Container -->
+    <div class="admin-table-wrapper">
+      @if (isLoading) {
+        <div class="admin-skeleton-loader">
+          <div class="skeleton-header-row"></div>
+          @for (i of [1, 2, 3]; track i) {
+            <div class="skeleton-table-row"></div>
+          }
+        </div>
+      } @else {
+        @if (users.length === 0) {
+          <div class="admin-empty-state">
+            <i class="bi bi-person-x-fill empty-icon"></i>
+            <h3>No Registered Clients</h3>
+            <p>No user accounts have been registered on the NexBank platform core yet.</p>
+          </div>
+        } @else {
+          <table class="admin-users-table">
+            <thead>
+              <tr>
+                <th><i class="bi bi-person-badge"></i> Client Name</th>
+                <th><i class="bi bi-envelope"></i> Email Address</th>
+                <th><i class="bi bi-card-text"></i> CIN Identity</th>
+                <th><i class="bi bi-telephone"></i> Telephone</th>
+                <th class="text-right"><i class="bi bi-gear"></i> Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (user of users; track user.email) {
+                <tr class="user-data-row">
+                  <td class="name-cell">
+                    <div class="avatar-circle">
+                      <span>{{ user.firstName?.charAt(0) }}{{ user.lastName?.charAt(0) }}</span>
+                    </div>
+                    <span class="full-name">{{ user.firstName }} {{ user.lastName }}</span>
+                  </td>
+                  <td class="email-cell">{{ user.email }}</td>
+                  <td class="cin-cell">
+                    <span class="cin-badge">{{ user.cin }}</span>
+                  </td>
+                  <td class="phone-cell">{{ user.phoneNumber }}</td>
+                  <td class="actions-cell text-right">
+                    <button (click)="deleteUser(user.idUser)" class="btn-delete-user" title="Delete Client Permanently">
+                      <i class="bi bi-trash3"></i>
+                      <span>Revoke Access</span>
+                    </button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        }
+      }
+    </div>
+
+  </div>
+</main>

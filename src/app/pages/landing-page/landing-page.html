@@ -1,0 +1,117 @@
+<section class="landing" id="landing-page">
+  <!-- Animated background elements -->
+  <div class="bg-effects" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="landing-nav">
+    <div class="nav-brand">
+      <div class="brand-icon">
+        <i class="bi bi-bank2"></i>
+      </div>
+      <span class="brand-text">NamBank</span>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-nav-login" (click)="login()">
+        Sign In
+        <i class="bi bi-arrow-right"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="bi bi-shield-check"></i>
+        <span>Secure & Trusted Banking</span>
+      </div>
+      <h1 class="hero-title">
+        Welcome To Your
+        <span class="gradient-text">Banking Account</span>
+        Manager
+      </h1>
+      <p class="hero-subtitle">
+        Experience seamless, secure financial management. Track your accounts,
+        make transfers, and take control of your finances — all in one place.
+      </p>
+      <div class="hero-actions">
+        <button class="btn-primary-glow" (click)="login()">
+          <span>Get Started</span>
+          <i class="bi bi-box-arrow-in-right"></i>
+        </button>
+        <button routerLink="/register" class="btn-outline-glass">
+          <span>Create User Account</span>
+          <i class="bi bi-person-plus"></i>
+        </button>
+      </div>
+      <div class="hero-footer-link">
+        <span class="forgot-text">Forgot your password?</span>
+        <button class="btn-text-link">
+          Reset Password
+          <i class="bi bi-arrow-right-short"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Hero visual -->
+    <div class="hero-visual">
+      <div class="card-stack">
+        <div class="float-card card-balance">
+          <div class="float-card-icon">
+            <i class="bi bi-wallet2"></i>
+          </div>
+          <div class="float-card-info">
+            <span class="float-card-label">Total Balance</span>
+            <span class="float-card-value">$24,560.00</span>
+          </div>
+        </div>
+        <div class="float-card card-transfer">
+          <div class="float-card-icon accent">
+            <i class="bi bi-arrow-left-right"></i>
+          </div>
+          <div class="float-card-info">
+            <span class="float-card-label">Recent Transfer</span>
+            <span class="float-card-value">+ $1,250.00</span>
+          </div>
+        </div>
+        <div class="float-card card-security">
+          <div class="float-card-icon success">
+            <i class="bi bi-shield-lock"></i>
+          </div>
+          <div class="float-card-info">
+            <span class="float-card-label">Security</span>
+            <span class="float-card-value">Protected</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats bar -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-value">256-bit</span>
+      <span class="stat-label">Encryption</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-value">99.9%</span>
+      <span class="stat-label">Uptime</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-value">24/7</span>
+      <span class="stat-label">Support</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-value">10K+</span>
+      <span class="stat-label">Active Users</span>
+    </div>
+  </div>
+</section>

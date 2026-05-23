@@ -1,0 +1,96 @@
+<app-user-navbar></app-user-navbar>
+
+<main class="transactions-main-page">
+  <div class="transactions-page-container animate-fade-in">
+    <!-- Breadcrumb Header -->
+    <div class="transactions-header-row">
+      <div class="header-navigation-side">
+        <a routerLink="/accounts" class="btn-back-nav">
+          <i class="bi bi-arrow-left"></i>
+          <span>Back to Accounts</span>
+        </a>
+        <h1 class="transactions-title-main">Transaction Ledger</h1>
+        @if (mainAccountRegistrationId) {
+          <div class="account-reg-badge text-glow">
+            <i class="bi bi-wallet2"></i>
+            <span>Account ID: {{ mainAccountRegistrationId }}</span>
+          </div>
+        }
+      </div>
+      <button (click)="fetchTransactions()" class="btn-refresh-action" title="Refresh List">
+        <i class="bi bi-arrow-clockwise"></i>
+        <span>Refresh</span>
+      </button>
+    </div>
+
+    <!-- Loading State -->
+    @if (isLoading) {
+      <div class="transactions-skeleton-wrapper">
+        <div class="skeleton-row header"></div>
+        @for (i of [1, 2, 3, 4]; track i) {
+          <div class="skeleton-row"></div>
+        }
+      </div>
+    } @else {
+      <!-- Empty Transactions State -->
+      @if (transactions.length === 0) {
+        <div class="empty-transactions-panel">
+          <div class="empty-icon-glow">
+            <i class="bi bi-clock-history"></i>
+          </div>
+          <h3>No Transaction Records</h3>
+          <p>There are no recorded transactions, deposits, or transfers on this bank account yet.</p>
+        </div>
+      } @else {
+        <!-- Transactions Ledger List/Table -->
+        <div class="transactions-table-container">
+          <table class="premium-transactions-table">
+            <thead>
+              <tr>
+                <th><i class="bi bi-calendar3"></i> Date & Time</th>
+                <th><i class="bi bi-arrow-left-right"></i> Sender / Origin</th>
+                <th><i class="bi bi-info-circle"></i> Status</th>
+                <th class="text-right"><i class="bi bi-cash-stack"></i> Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (transaction of transactions; track transaction.idTransaction) {
+                <tr class="transaction-row-interactive">
+                  <td class="date-cell">
+                    <span class="main-date">{{ transaction.time | date:'MMM d, y' }}</span>
+                    <span class="sub-time">{{ transaction.time | date:'h:mm a' }}</span>
+                  </td>
+                  <td class="sender-cell">
+                    <div class="origin-account-info">
+                      <span class="origin-badge">FROM</span>
+                      <span class="origin-account-id">{{ getAccountRegistrationId(transaction.idFromAccount) }}</span>
+                    </div>
+                  </td>
+                  <td class="status-cell">
+                    <span 
+                      class="transaction-status-tag" 
+                      [class.status-completed]="transaction.status === 'SUCCESS' || transaction.status === 'COMPLETED'"
+                      [class.status-pending]="transaction.status === 'PENDING'"
+                      [class.status-failed]="transaction.status === 'FAILED'"
+                    >
+                      <span class="status-dot-mini"></span>
+                      {{ transaction.status }}
+                    </span>
+                  </td>
+                  <td class="amount-cell text-right" [class.negative-amount]="transaction.amount < 0 || transaction.idFromAccount === idAccount">
+                    <!-- Format Debit (negative) or Credit (positive) -->
+                    @if (transaction.idFromAccount === idAccount) {
+                      <span class="amount-val">-{{ transaction.amount | currency:'USD':'symbol':'1.2-2' }}</span>
+                    } @else {
+                      <span class="amount-val">+{{ transaction.amount | currency:'USD':'symbol':'1.2-2' }}</span>
+                    }
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+    }
+  </div>
+</main>

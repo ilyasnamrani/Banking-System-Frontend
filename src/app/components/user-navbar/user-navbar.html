@@ -1,0 +1,56 @@
+<header class="app-header">
+  <div class="header-container">
+    <!-- Brand logo/text -->
+    <a routerLink="/userDashboard" class="brand-link">
+      <div class="brand-logo">
+        <i class="bi bi-bank2"></i>
+      </div>
+      <span class="brand-name">NexBank</span>
+    </a>
+
+    <!-- Nav Menu -->
+    <nav class="nav-menu">
+      <a routerLink="/userDashboard" routerLinkActive="active" class="nav-item">
+        <i class="bi bi-grid-1x2"></i>
+        <span>Dashboard</span>
+      </a>
+      <a routerLink="/accounts" routerLinkActive="active" class="nav-item">
+        <i class="bi bi-wallet2"></i>
+        <span>My Accounts</span>
+      </a>
+      <a routerLink="/create-bank-account" routerLinkActive="active" class="nav-item">
+        <i class="bi bi-plus-circle"></i>
+        <span>Open Account</span>
+      </a>
+      <a routerLink="/update-user-account" routerLinkActive="active" class="nav-item">
+        <i class="bi bi-person-gear"></i>
+        <span>Profile Settings</span>
+      </a>
+    </nav>
+
+    <!-- User Profile & Actions -->
+    <div class="user-actions">
+      @if (userInfos) {
+        <div class="user-profile">
+          <div class="avatar">
+            <span class="avatar-initial">{{ userInfos?.firstName?.charAt(0) }}{{ userInfos?.lastName?.charAt(0) }}</span>
+          </div>
+          <div class="user-info-text">
+            <span class="welcome-text">Welcome back,</span>
+            <span class="user-name">{{ userInfos?.firstName }} {{ userInfos?.lastName }}</span>
+          </div>
+        </div>
+      } @else {
+        <div class="shimmer-profile">
+          <div class="shimmer-avatar"></div>
+          <div class="shimmer-text"></div>
+        </div>
+      }
+      
+      <button class="btn-logout" (click)="logout()" title="Logout">
+        <span>Sign Out</span>
+        <i class="bi bi-box-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+</header>

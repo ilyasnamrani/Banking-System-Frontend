@@ -1,0 +1,98 @@
+<app-user-navbar></app-user-navbar>
+
+<main class="dashboard-main">
+  <div class="dashboard-container animate-fade-in">
+    <div class="dashboard-header-row">
+      <div class="header-titles">
+        <h1 class="page-title">My Bank Accounts</h1>
+        <p class="page-subtitle">Manage your funds, view activities, and toggle account states</p>
+      </div>
+      <button routerLink="/create-bank-account" class="btn-primary-accent">
+        <i class="bi bi-plus-lg"></i>
+        <span>Open New Account</span>
+      </button>
+    </div>
+
+    @if (isLoading) {
+      <div class="accounts-grid">
+        @for (i of [1, 2]; track i) {
+          <div class="card-skeleton">
+            <div class="skeleton-header"></div>
+            <div class="skeleton-body">
+              <div class="skeleton-line short"></div>
+              <div class="skeleton-line"></div>
+            </div>
+            <div class="skeleton-footer"></div>
+          </div>
+        }
+      </div>
+    } @else {
+      @if (accounts.length === 0) {
+        <div class="empty-accounts-state">
+          <div class="empty-icon">
+            <i class="bi bi-wallet2"></i>
+          </div>
+          <h3>No Active Accounts Found</h3>
+          <p>You haven't opened any savings or checking accounts yet. Start your financial journey with NexBank today.</p>
+          <button routerLink="/create-bank-account" class="btn-primary-accent mt-3">
+            <span>Open Your First Account</span>
+            <i class="bi bi-arrow-right"></i>
+          </button>
+        </div>
+      } @else {
+        <div class="accounts-grid">
+          @for (account of accounts; track account.idAccount) {
+            <div class="bank-card" [class.deactivated]="account.state !== 'ACTIVATED'">
+              <div class="bank-card-header">
+                <div class="card-chip">
+                  <i class="bi bi-cpu"></i>
+                </div>
+                <div class="card-brand-logo">
+                  <i class="bi bi-bank2"></i>
+                </div>
+              </div>
+
+              <div class="bank-card-balance-section">
+                <span class="balance-label">Available Balance</span>
+                <h2 class="balance-amount">{{ account.balance | currency:'USD':'symbol':'1.2-2' }}</h2>
+              </div>
+
+              <div class="bank-card-body">
+                <div class="card-info-item">
+                  <span class="info-label">Account ID</span>
+                  <span class="info-value text-glow">{{ account.registrationId }}</span>
+                </div>
+                <div class="card-info-item">
+                  <span class="info-label">Status</span>
+                  <span class="status-badge" [class.active-badge]="account.state === 'ACTIVATED'">
+                    <span class="status-dot"></span>
+                    {{ account.state }}
+                  </span>
+                </div>
+              </div>
+
+              <div class="bank-card-actions">
+                <button [routerLink]="['/transactions', account.idAccount]" class="btn-card-action primary">
+                  <i class="bi bi-arrow-left-right"></i>
+                  <span>Transactions</span>
+                </button>
+
+                @if (account.state === 'ACTIVATED') {
+                  <button (click)="deactivateAccount(account.idAccount)" class="btn-card-action danger" title="Deactivate Account">
+                    <i class="bi bi-slash-circle"></i>
+                    <span>Deactivate</span>
+                  </button>
+                } @else {
+                  <button (click)="activateAccount(account.idAccount)" class="btn-card-action success" title="Activate Account">
+                    <i class="bi bi-check-circle"></i>
+                    <span>Activate</span>
+                  </button>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      }
+    }
+  </div>
+</main>

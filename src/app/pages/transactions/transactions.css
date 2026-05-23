@@ -1,0 +1,388 @@
+/* ============================================
+   TRANSACTION HISTORY — Premium Dark Table Ledger
+   ============================================ */
+
+.transactions-main-page {
+  min-height: calc(100vh - 73px);
+  padding: 40px 24px 80px;
+  background: var(--gradient-hero);
+  position: relative;
+  overflow: hidden;
+}
+
+.transactions-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+}
+
+/* Header Row */
+.transactions-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 36px;
+  gap: 20px;
+}
+
+.header-navigation-side {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.btn-back-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.85rem;
+  transition: var(--transition-smooth);
+}
+
+.btn-back-nav:hover {
+  color: var(--brand-accent-light);
+  transform: translateX(-3px);
+}
+
+.transactions-title-main {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.account-reg-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.15);
+  color: var(--text-accent);
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: var(--font-display);
+}
+
+.btn-refresh-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-glass);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.btn-refresh-action:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: var(--text-primary);
+}
+
+.btn-refresh-action i {
+  transition: transform 0.5s ease-in-out;
+}
+
+.btn-refresh-action:hover i {
+  transform: rotate(180deg);
+}
+
+/* Premium Glass Table */
+.transactions-table-container {
+  border-radius: var(--radius-xl);
+  background: rgba(30, 41, 59, 0.35);
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.premium-transactions-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-family: var(--font-body);
+}
+
+.premium-transactions-table th {
+  padding: 18px 24px;
+  background: rgba(10, 14, 26, 0.4);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.premium-transactions-table th i {
+  margin-right: 4px;
+  color: var(--text-muted);
+}
+
+.premium-transactions-table td {
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  vertical-align: middle;
+}
+
+.transaction-row-interactive {
+  transition: var(--transition-fast);
+}
+
+.transaction-row-interactive:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.transaction-row-interactive:last-child td {
+  border-bottom: none;
+}
+
+/* Cells Styling */
+.date-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.main-date {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.sub-time {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+.origin-account-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.origin-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.05);
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.origin-account-id {
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Status Badges in Ledger */
+.transaction-status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-dot-mini {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+.status-completed {
+  background: rgba(34, 197, 94, 0.08);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.15);
+}
+.status-completed .status-dot-mini {
+  background: #4ade80;
+  box-shadow: 0 0 6px #4ade80;
+}
+
+.status-pending {
+  background: rgba(234, 179, 8, 0.08);
+  color: #fbbf24;
+  border: 1px solid rgba(234, 179, 8, 0.15);
+}
+.status-pending .status-dot-mini {
+  background: #fbbf24;
+  box-shadow: 0 0 6px #fbbf24;
+}
+
+.status-failed {
+  background: rgba(239, 68, 68, 0.08);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.15);
+}
+.status-failed .status-dot-mini {
+  background: #f87171;
+  box-shadow: 0 0 6px #f87171;
+}
+
+/* Amount Cells - Positive and Negative */
+.amount-cell {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #4ade80;
+  text-shadow: 0 0 8px rgba(74, 222, 128, 0.1);
+}
+
+.amount-cell.negative-amount {
+  color: #f87171;
+  text-shadow: 0 0 8px rgba(248, 113, 113, 0.1);
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+/* Empty State Panel */
+.empty-transactions-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+  text-align: center;
+  border-radius: var(--radius-xl);
+  background: rgba(30, 41, 59, 0.25);
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.empty-icon-glow {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-lg);
+  background: rgba(99, 102, 241, 0.05);
+  border: 1px solid rgba(99, 102, 241, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--brand-primary-light);
+  margin-bottom: 24px;
+}
+
+.empty-transactions-panel h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+
+.empty-transactions-panel p {
+  color: var(--text-secondary);
+  max-width: 380px;
+  font-size: 0.92rem;
+}
+
+/* Loading Skeletons */
+.transactions-skeleton-wrapper {
+  border-radius: var(--radius-xl);
+  background: rgba(30, 41, 59, 0.25);
+  border: 1px solid var(--border-subtle);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skeleton-row {
+  height: 48px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(90deg, #1e2536 25%, #252d3f 50%, #1e2536 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.skeleton-row.header {
+  height: 36px;
+  width: 100%;
+  opacity: 0.5;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .transactions-main-page {
+    padding: 24px 16px 100px;
+  }
+
+  .transactions-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .btn-refresh-action {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Table responsive conversion to card layout */
+  .premium-transactions-table thead {
+    display: none;
+  }
+
+  .premium-transactions-table tbody,
+  .premium-transactions-table tr,
+  .premium-transactions-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .premium-transactions-table tr {
+    padding: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+  }
+
+  .premium-transactions-table td {
+    padding: 6px 0;
+    border-bottom: none;
+    text-align: left !important;
+  }
+
+  .date-cell {
+    margin-bottom: 4px;
+  }
+
+  .status-cell {
+    margin-bottom: 12px;
+  }
+
+  .amount-cell {
+    position: absolute;
+    top: 20px;
+    right: 16px;
+    font-size: 1rem;
+  }
+}
